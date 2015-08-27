@@ -1,0 +1,85 @@
+﻿@model SuperOldCars.Web.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Car</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TitreAnnonce)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TitreAnnonce)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Marque)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Marque)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Modele)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Modele)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Annee)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Annee)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Proprietaire)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Proprietaire)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Telephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Negociable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Negociable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Prix)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Prix)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Information)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Information)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Conditions)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Conditions)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
