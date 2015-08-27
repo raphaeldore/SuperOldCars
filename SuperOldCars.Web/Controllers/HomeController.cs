@@ -10,7 +10,7 @@ namespace SuperOldCars.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "Le site avec la plus grande sélection de voitures d'antan au monde!";
 
             return View();
         }
