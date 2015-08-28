@@ -6,7 +6,7 @@ namespace SuperOldCars.Web.Repositories
 {
     public class CarRepository
     {
-        private readonly List<Car> cars; // = new List<Car>();
+        private readonly List<Car> cars;
 
         public CarRepository()
         {
@@ -19,16 +19,16 @@ namespace SuperOldCars.Web.Repositories
             Car corvette = new Car
             {
                 Id = 0,
+                TitreAnnonce = "Belle Corvette en exellent état!",
                 Annee = 1967,
                 Conditions = true,
-                Information = "En excellent état",
+                Information = "Bacon ipsum dolor amet flank hamburger venison jowl kielbasa. Kielbasa short loin turducken biltong t-bone pork loin corned beef kevin leberkas beef jerky capicola bacon landjaeger. Biltong ham hock brisket jowl pork belly. Sirloin kevin turkey jowl bresaola meatloaf cupim. Flank tenderloin pig prosciutto jerky fatback.",
                 Marque = "Chevrolet",
                 Modele = "Corvette",
                 Negociable = false,
                 Prix = new decimal(50000),
                 Proprietaire = "Raphaël Doré",
-                Telephone = "418-222-2222",
-                TitreAnnonce = "Belle Corvette en exellent état!"
+                Telephone = "418-222-2222"
             };
 
             cars.Add(corvette);
