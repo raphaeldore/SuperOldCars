@@ -25,7 +25,7 @@ namespace SuperOldCars.Web.Repositories
                 Marque = "Chevrolet",
                 Modele = "Corvette",
                 Negociable = false,
-                Prix = new decimal(50000.50),
+                Prix = new decimal(50000),
                 Proprietaire = "Raphaël Doré",
                 Telephone = "418-222-2222",
                 TitreAnnonce = "Belle Corvette en exellent état!"

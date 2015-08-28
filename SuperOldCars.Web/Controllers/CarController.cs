@@ -79,11 +79,11 @@ namespace SuperOldCars.Web.Controllers
                 {
                     Id = id,
                     Annee = int.Parse(collection["Annee"]),
-                    Conditions = Boolean.Parse(collection["Conditions"].ToLower()),
+                    Conditions = collection["Conditions"] != "false",
                     Information = collection["Information"],
                     Marque = collection["Marque"],
                     Modele = collection["Modele"],
-                    Negociable = collection["Negociable"] == "true",
+                    Negociable = collection["Negociable"] != "false",
                     Prix = Decimal.Parse(collection["Prix"]),
                     Proprietaire = collection["Proprietaire"],
                     Telephone = collection["Telephone"],

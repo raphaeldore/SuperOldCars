@@ -44,6 +44,8 @@
         <th></th>
     </tr>
 
+    @using SuperOldCars.Web.Helpers
+
     @foreach (var item in Model)
     {
         <tr>
@@ -66,7 +68,7 @@
                 @Html.DisplayFor(modelItem => item.Telephone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Negociable)
+                @Html.FormatBool(item.Negociable)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Prix)
@@ -75,7 +77,7 @@
                 @Html.DisplayFor(modelItem => item.Information)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Conditions)
+                @Html.FormatBool(item.Conditions)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
