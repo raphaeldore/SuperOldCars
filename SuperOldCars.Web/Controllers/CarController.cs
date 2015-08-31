@@ -46,22 +46,11 @@ namespace SuperOldCars.Web.Controllers
         {
             try
             {
-                Car car = new Car
-                {
-                    Id = _carRepository.GetNextCarId(),
-                    Annee = int.Parse(collection["Annee"]),
-                    Conditions = collection["Conditions"] != "false",
-                    Information = collection["Information"],
-                    Marque = collection["Marque"],
-                    Modele = collection["Modele"],
-                    Negociable = collection["Negociable"] != "false",
-                    Prix = Decimal.Parse(collection["Prix"]),
-                    Proprietaire = collection["Proprietaire"],
-                    Telephone = collection["Telephone"],
-                    TitreAnnonce = collection["TitreAnnonce"]
-                };
+                Car car = new Car();
 
-                if (!ModelState.IsValid) return View(car);
+                TryUpdateModel(car, collection);
+
+                if (!ModelState.IsValid) return View();
 
                 _carRepository.AddCar(car);
 
@@ -96,24 +85,9 @@ namespace SuperOldCars.Web.Controllers
 
                 if (_carRepository.GetCar(id) == null) return View("Index");
 
-                //Car car = new Car
-                //{
-                //    Id = id,
-                //    Annee = int.Parse(collection["Annee"]),
-                //    Conditions = collection["Conditions"] != "false",
-                //    Information = collection["Information"],
-                //    Marque = collection["Marque"],
-                //    Modele = collection["Modele"],
-                //    Negociable = collection["Negociable"] != "false",
-                //    Prix = Decimal.Parse(collection["Prix"], CultureInfo.InvariantCulture),
-                //    Proprietaire = collection["Proprietaire"],
-                //    Telephone = collection["Telephone"],
-                //    TitreAnnonce = collection["TitreAnnonce"]
-                //};
-
                 Car car = new Car();
 
-                TryUpdateModel(car, collection);//UpdateModel<Car>(car);
+                TryUpdateModel(car, collection);
 
                 if (!ModelState.IsValid) return View(_carRepository.GetCar(id));
 
