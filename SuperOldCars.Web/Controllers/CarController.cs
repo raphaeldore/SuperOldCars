@@ -1,6 +1,7 @@
 ﻿using SuperOldCars.Web.Models;
 using SuperOldCars.Web.Repositories;
 using System;
+using System.Globalization;
 using System.Web.Mvc;
 
 namespace SuperOldCars.Web.Controllers
@@ -45,7 +46,24 @@ namespace SuperOldCars.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                Car car = new Car
+                {
+                    Id = _carRepository.GetNextCarId(),
+                    Annee = int.Parse(collection["Annee"]),
+                    Conditions = collection["Conditions"] != "false",
+                    Information = collection["Information"],
+                    Marque = collection["Marque"],
+                    Modele = collection["Modele"],
+                    Negociable = collection["Negociable"] != "false",
+                    Prix = Decimal.Parse(collection["Prix"]),
+                    Proprietaire = collection["Proprietaire"],
+                    Telephone = collection["Telephone"],
+                    TitreAnnonce = collection["TitreAnnonce"]
+                };
+
+                if (!ModelState.IsValid) return View(car);
+
+                _carRepository.AddCar(car);
 
                 return RedirectToAction("Index");
             }
@@ -62,7 +80,7 @@ namespace SuperOldCars.Web.Controllers
         {
             Car car = _carRepository.GetCar(id);
 
-            if (car == null) return HttpNotFound();
+            if (car == null) return View("Index");
 
             return View(car);
         }
@@ -75,22 +93,29 @@ namespace SuperOldCars.Web.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) return View(_carRepository.GetCar(id));
 
-                Car car = new Car
-                {
-                    Id = id,
-                    Annee = int.Parse(collection["Annee"]),
-                    Conditions = collection["Conditions"] != "false",
-                    Information = collection["Information"],
-                    Marque = collection["Marque"],
-                    Modele = collection["Modele"],
-                    Negociable = collection["Negociable"] != "false",
-                    Prix = Decimal.Parse(collection["Prix"]),
-                    Proprietaire = collection["Proprietaire"],
-                    Telephone = collection["Telephone"],
-                    TitreAnnonce = collection["TitreAnnonce"]
-                };
+                if (_carRepository.GetCar(id) == null) return View("Index");
+
+                //Car car = new Car
+                //{
+                //    Id = id,
+                //    Annee = int.Parse(collection["Annee"]),
+                //    Conditions = collection["Conditions"] != "false",
+                //    Information = collection["Information"],
+                //    Marque = collection["Marque"],
+                //    Modele = collection["Modele"],
+                //    Negociable = collection["Negociable"] != "false",
+                //    Prix = Decimal.Parse(collection["Prix"], CultureInfo.InvariantCulture),
+                //    Proprietaire = collection["Proprietaire"],
+                //    Telephone = collection["Telephone"],
+                //    TitreAnnonce = collection["TitreAnnonce"]
+                //};
+
+                Car car = new Car();
+
+                TryUpdateModel(car, collection);//UpdateModel<Car>(car);
+
+                if (!ModelState.IsValid) return View(_carRepository.GetCar(id));
 
                 _carRepository.UpdateCar(car);
 

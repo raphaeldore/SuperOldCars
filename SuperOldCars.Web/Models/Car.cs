@@ -28,7 +28,8 @@ namespace SuperOldCars.Web.Models
 
         [DisplayName("Année")]
         [Required(ErrorMessage = "Le champ Année est requis")]
-        [Range(2000, 2015, ErrorMessage = "Votre voiture est trop vieille. L'année de la voiture doit être entre 2000 et 2015.")]
+        [YearRange(ErrorMessage = "L'année de la voiture doit être entre {1} et {2}")]
+
         public int Annee { get; set; }
 
         [DisplayName("Propriétaire")]
@@ -37,6 +38,7 @@ namespace SuperOldCars.Web.Models
 
         [DisplayName("Téléphone")]
         [Required(ErrorMessage = "Le champ Téléphone est requis")]
+        [DataType(DataType.PhoneNumber)]
         public string Telephone { get; set; }
 
         [DisplayName("Négociable?")]
@@ -45,15 +47,25 @@ namespace SuperOldCars.Web.Models
 
         [DisplayName("Prix")]
         [Required(ErrorMessage = "Le champ Prix est requis")]
+        [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessage = "Le prix ne peut avoir plus de 2 chiffres après le point")]
         public decimal Prix { get; set; }
 
         [DisplayName("Information")]
         [Required(ErrorMessage = "Le champ Information est requis")]
+        [DataType(DataType.MultilineText)]
         public string Information { get; set; }
 
         [DisplayName("De condition?")]
         [Required(ErrorMessage = "Le champ De Condition? est requis")]
         public bool Conditions { get; set; }
+    }
+
+    public class YearRangeAttribute : RangeAttribute
+    {
+        private const int MAX_NB_ANNEES = 15;
+
+        public YearRangeAttribute()
+            : base(DateTime.Now.AddYears(-MAX_NB_ANNEES).Year, DateTime.Now.Year) { }
     }
 
 }

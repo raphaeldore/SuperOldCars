@@ -12,7 +12,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- navbar-inverse -->
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -72,5 +73,29 @@
 //]]>
 
 </script>
+
+    <script>
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) ||
+            !isNaN(Globalize.parseFloat(value));
+    }
+
+    $(document).ready(function () {
+        Globalize.culture('@System.Threading.Thread.CurrentThread.CurrentCulture');
+    });
+    </script>
+
+<!-- Les nombres à virgules et à points sont valides -->
+<script>
+        jQuery.extend(jQuery.validator.methods, {
+            range: function (value, element, param) {
+                // Use the Globalization plugin to parse the value
+                var val = Globalize.parseFloat(value);
+                return this.optional(element) || (
+                    val >= param[0] && val <= param[1]);
+            }
+        });
+    </script>
+
 </body>
 </html>

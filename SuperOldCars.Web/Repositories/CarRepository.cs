@@ -18,9 +18,9 @@ namespace SuperOldCars.Web.Repositories
         {
             Car corvette = new Car
             {
-                Id = 0,
+                Id = GetNextCarId(),
                 TitreAnnonce = "Belle Corvette en exellent état!",
-                Annee = 1967,
+                Annee = 2002,
                 Conditions = true,
                 Information = "Bacon ipsum dolor amet flank hamburger venison jowl kielbasa. Kielbasa short loin turducken biltong t-bone pork loin corned beef kevin leberkas beef jerky capicola bacon landjaeger. Biltong ham hock brisket jowl pork belly. Sirloin kevin turkey jowl bresaola meatloaf cupim. Flank tenderloin pig prosciutto jerky fatback.",
                 Marque = "Chevrolet",
@@ -66,5 +66,11 @@ namespace SuperOldCars.Web.Repositories
             carToUpdate.TitreAnnonce = car.TitreAnnonce;
             carToUpdate.Prix = car.Prix;
         }
+
+        public int GetNextCarId()
+        {
+            return cars.Count > 0 ? cars.Last().Id + 1 : 0;
+        }
+
     }
 }
