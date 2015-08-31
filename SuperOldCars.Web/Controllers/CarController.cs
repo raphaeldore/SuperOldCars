@@ -75,6 +75,8 @@ namespace SuperOldCars.Web.Controllers
         {
             try
             {
+                if (!ModelState.IsValid) return View(_carRepository.GetCar(id));
+
                 Car car = new Car
                 {
                     Id = id,

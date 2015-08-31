@@ -1,4 +1,5 @@
-﻿@model SuperOldCars.Web.Models.Car
+﻿@using SuperOldCars.Web.Helpers
+@model SuperOldCars.Web.Models.Car
 
 @{
     ViewBag.Title = "Edit";
@@ -6,11 +7,16 @@
 
 <h2>Edit</h2>
 
+
+
 @using (Html.BeginForm("Edit", "Car", FormMethod.Post, new {@class = "form-horizontal"}))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
+    <div class="form-group" style="text-align: center">
+        @Html.PlaceholderCarImage(Model.Marque, Model.Modele, 800, 250)
+    </div>
 
     @Html.HiddenFor(model => model.Id)
 
@@ -117,7 +123,7 @@
 }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Retour à la liste", "Index")
     </div>
 
     @section Scripts {

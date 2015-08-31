@@ -1,85 +1,54 @@
-﻿@model SuperOldCars.Web.Models.Car
+﻿@using SuperOldCars.Web.Helpers
+@model SuperOldCars.Web.Models.Car
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Détails";
 }
 
-<h2>Details</h2>
+<div class="page-header">
+    <h2>@ViewBag.Title</h2>
+    <h3>@Html.DisplayFor(model => model.TitreAnnonce)</h3>
+</div>
 
-<fieldset>
-    <legend>Car</legend>
+<div class="form-group" style="text-align: center">
+    @Html.PlaceholderCarImage(Model.Marque, Model.Modele, 800, 250)
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.TitreAnnonce)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.TitreAnnonce)
-    </div>
+<div class="col-xs-6">
+    <dl class="dl-horizontal">
+        <dt>@Html.LabelFor(model => model.Marque)</dt>
+        <dd>@Html.DisplayFor(model => model.Marque)</dd>
+        <dt>@Html.LabelFor(model => model.Modele)</dt>
+        <dd>@Html.DisplayFor(model => model.Modele)</dd>
+        <dt>@Html.LabelFor(model => model.Annee)</dt>
+        <dd>@Html.DisplayFor(model => model.Annee)</dd>
+        <dt>@Html.LabelFor(model => model.Proprietaire)</dt>
+        <dd>@Html.DisplayFor(model => model.Proprietaire)</dd>
+    </dl>
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Marque)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Marque)
-    </div>
+<div class="col-xs-6">
+    <dl class="dl-horizontal">
+        <dt>@Html.LabelFor(model => model.Telephone)</dt>
+        <dd>@Html.DisplayFor(model => model.Telephone)</dd>
+        <dt>@Html.LabelFor(model => model.Prix)</dt>
+        <dd>@Html.FormatMoney(Model.Prix)</dd>
+        <dt>@Html.LabelFor(model => model.Negociable)</dt>
+        <dd>@Html.FormatBool(Model.Negociable)</dd>
+        <dt>@Html.LabelFor(model => model.Conditions)</dt>
+        <dd>@Html.FormatBool(Model.Conditions)</dd>
+    </dl>
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Modele)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Modele)
-    </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Annee)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Annee)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Proprietaire)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Proprietaire)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Telephone)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Telephone)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Negociable)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Negociable)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Prix)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Prix)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Information)
-    </div>
-    <div class="display-field">
+<div class="row-fluid">
+    <p>
         @Html.DisplayFor(model => model.Information)
-    </div>
+    </p>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Conditions)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Conditions)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <p>
+        @Html.ActionLink("Modifier", "Edit", new {id = Model.Id}) |
+        @Html.ActionLink("Retour à la liste", "Index")
+    </p>
+
+</div>
