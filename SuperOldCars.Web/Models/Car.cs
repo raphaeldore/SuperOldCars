@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
+using SuperOldCars.Web.Models.Checked.Entitites;
 
 namespace SuperOldCars.Web.Models
 {
@@ -57,8 +58,9 @@ namespace SuperOldCars.Web.Models
         [DataType(DataType.MultilineText)]
         public string Information { get; set; }
 
-        [DisplayName("De condition?")]
-        [Required(ErrorMessage = "Le champ De Condition? est requis")]
+        [DisplayName("Termes et condition")]
+        [Required(ErrorMessage = "Le champ Conditions est requis")]
+        [BooleanRequired(ErrorMessage = "Vous devez accepter les termes et conditions.")]
         public bool Conditions { get; set; }
     }
 
@@ -68,6 +70,27 @@ namespace SuperOldCars.Web.Models
 
         public YearRangeAttribute()
             : base(DateTime.Now.AddYears(-MAX_NB_ANNEES).Year, DateTime.Now.Year) { }
+    }
+
+    // Source : http://stackoverflow.com/a/6987065
+    namespace Checked.Entitites
+    {
+        public class BooleanRequiredAttribute : ValidationAttribute, IClientValidatable
+        {
+            public override bool IsValid(object value)
+            {
+                return value != null && (bool)value == true;
+            }
+
+            public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
+            {
+                yield return new ModelClientValidationRule()
+                {
+                    ValidationType = "booleanrequired",
+                    ErrorMessage = this.ErrorMessageString
+                };
+            }
+        }
     }
 
 }
