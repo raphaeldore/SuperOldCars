@@ -17,16 +17,35 @@ namespace SuperOldCars.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Nous n'avons rien à partager.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Pour mieux vous servir!";
 
             return View();
+        }
+
+        //
+        // POST: /Home/Contact
+
+        [HttpPost]
+        public ActionResult Contact(FormCollection collection)
+        {
+            try
+            {
+                ViewBag.MessageConfirmation = "Votre message a bien été reçu!";
+
+                //return RedirectToAction("Contact");
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
