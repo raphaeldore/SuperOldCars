@@ -6,11 +6,11 @@ namespace SuperOldCars.Web.Repositories
 {
     public class CarRepository
     {
-        private readonly List<Car> cars;
+        private readonly List<Car> _cars;
 
         public CarRepository()
         {
-            cars = new List<Car>();
+            _cars = new List<Car>();
             Init();
         }
 
@@ -31,27 +31,27 @@ namespace SuperOldCars.Web.Repositories
                 Telephone = "418-222-2222"
             };
 
-            cars.Add(corvette);
+            _cars.Add(corvette);
         }
 
         public List<Car> GetAllCars()
         {
-            return cars;
+            return _cars;
         }
 
         public Car GetCar(int id)
         {
-            return cars.Find(car => car.Id == id);
+            return _cars.Find(car => car.Id == id);
         }
 
         public void AddCar(Car car)
         {
-            cars.Add(car);
+            _cars.Add(car);
         }
 
         public void UpdateCar(Car car)
         {
-            var carToUpdate = cars.FirstOrDefault(c => c.Id == car.Id);
+            var carToUpdate = _cars.FirstOrDefault(c => c.Id == car.Id);
 
             if (carToUpdate == null) return;
 
@@ -69,21 +69,21 @@ namespace SuperOldCars.Web.Repositories
 
         public int GetNextCarId()
         {
-            return cars.Count > 0 ? cars.Last().Id + 1 : 0;
+            return _cars.Count > 0 ? _cars.Last().Id + 1 : 0;
         }
 
         public decimal GetCarsPriceSum()
         {
-            return cars.Sum(car => car.Prix);
+            return _cars.Sum(car => car.Prix);
         }
 
         public void DeleteCar(int id)
         {
-            var car = cars.FirstOrDefault(m => m.Id == id);
+            var car = _cars.FirstOrDefault(m => m.Id == id);
 
             if (car != null)
             {
-                cars.Remove(car);
+                _cars.Remove(car);
             }
         }
     }
