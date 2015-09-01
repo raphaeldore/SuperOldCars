@@ -15,6 +15,7 @@ namespace SuperOldCars.Web.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.TotalCarsSum = String.Format("{0:c}", _carRepository.GetCarsPriceSum());
             return View(_carRepository.GetAllCars());
         }
 
@@ -25,7 +26,7 @@ namespace SuperOldCars.Web.Controllers
         {
             Car car = _carRepository.GetCar(id);
 
-            if (car == null) return HttpNotFound();
+            if (car == null) return RedirectToAction("Index");
 
             return View(car);
         }
@@ -69,7 +70,7 @@ namespace SuperOldCars.Web.Controllers
         {
             Car car = _carRepository.GetCar(id);
 
-            if (car == null) return View("Index");
+            if (car == null) return RedirectToAction("Index");
 
             return View(car);
         }
@@ -83,7 +84,7 @@ namespace SuperOldCars.Web.Controllers
             try
             {
 
-                if (_carRepository.GetCar(id) == null) return View("Index");
+                if (_carRepository.GetCar(id) == null) return RedirectToAction("Index");
 
                 Car car = new Car();
 
@@ -107,7 +108,11 @@ namespace SuperOldCars.Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            Car car = _carRepository.GetCar(id);
+
+            if (car == null) return View("Index");
+
+            return View(car);
         }
 
         //
@@ -118,7 +123,7 @@ namespace SuperOldCars.Web.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                _carRepository.DeleteCar(id);
 
                 return RedirectToAction("Index");
             }

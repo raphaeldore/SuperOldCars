@@ -47,7 +47,9 @@ namespace SuperOldCars.Web.Models
 
         [DisplayName("Prix")]
         [Required(ErrorMessage = "Le champ Prix est requis")]
-        [RegularExpression(@"^\d+.\d{0,2}$", ErrorMessage = "Le prix ne peut avoir plus de 2 chiffres après le point")]
+        // 
+        // ^\d+.\d{0,2}$
+        // [RegularExpression(@"^\$?\d+(\.\d{2})?$", ErrorMessage = "Le prix doit être dans le format 9999.99% peut avoir plus de 2 chiffres après le point")]
         public decimal Prix { get; set; }
 
         [DisplayName("Information")]

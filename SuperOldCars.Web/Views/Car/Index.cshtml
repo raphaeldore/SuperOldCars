@@ -2,10 +2,12 @@
 @model IEnumerable<SuperOldCars.Web.Models.Car>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Nos Offres";
 }
 
-<h2>Index</h2>
+<div class="page-header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
 <p>
     @Html.ActionLink("Créer une nouvelle annonce", "Create")
@@ -13,17 +15,23 @@
 
 @foreach (var item in Model)
 {
-    <div class="media" style="background-color: rgb(240, 240, 240);padding: 15px;">
+    <div class="media" style="background-color: rgb(240, 240, 240); padding: 15px;">
         <div class="media-left">
             @Html.PlaceholderCarImage(item.Marque, item.Modele, 100, 100)
             <span style="font-size: 1.2em; font-weight: bold">@Html.FormatMoney(item.Prix)</span>
-            @Html.ActionLink("Modifier", "Edit", new { id = item.Id })
-            @Html.ActionLink("Détails", "Details", new { id = item.Id })
-            @Html.ActionLink("Supprimer", "Delete", new { id = item.Id })
+            @Html.ActionLink("Modifier", "Edit", new {id = item.Id})
+            @Html.ActionLink("Détails", "Details", new {id = item.Id})
+            @Html.ActionLink("Supprimer", "Delete", new {id = item.Id})
         </div>
         <div class="media-body">
-            <h4 class="media-heading">@Html.ActionLink(item.TitreAnnonce, "Details", new { id = item.Id })</h4>
+            <h4 class="media-heading">@Html.ActionLink(item.TitreAnnonce, "Details", new {id = item.Id})</h4>
             @Html.DisplayFor(modelItem => item.Information)
         </div>
     </div>
 }
+
+<div class="panel panel-info" style="margin-top: 15px;">
+    <div class="panel-body">
+        Prix total des voitures: <strong>@ViewBag.TotalCarsSum</strong>
+    </div>
+</div>

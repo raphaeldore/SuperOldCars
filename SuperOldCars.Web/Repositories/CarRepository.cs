@@ -72,5 +72,19 @@ namespace SuperOldCars.Web.Repositories
             return cars.Count > 0 ? cars.Last().Id + 1 : 0;
         }
 
+        public decimal GetCarsPriceSum()
+        {
+            return cars.Sum(car => car.Prix);
+        }
+
+        public void DeleteCar(int id)
+        {
+            var car = cars.FirstOrDefault(m => m.Id == id);
+
+            if (car != null)
+            {
+                cars.Remove(car);
+            }
+        }
     }
 }
